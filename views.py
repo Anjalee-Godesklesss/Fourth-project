@@ -23,4 +23,13 @@ def search(request):
 
 def about(request):
     realtors = Realtor.objects.order_by('_hire_date')
-    return render(request, 'pages/about.html')
+    return render(request, 'models/base.html')
+
+mvp_realtors = Realtor.objects.all().filter(is_mvp=True)
+
+context = {
+    'realtors': realtors,
+    'mvp-realtors':mvp_realtors
+}
+return render ( request, 'creating models/base.html', context)
+
